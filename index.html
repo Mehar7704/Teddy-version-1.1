@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#dff3ff">
+<title>Teddy Care • Junior's Little World</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#f2faff;--panel:#fff;--ink:#27445d;--muted:#71889b;--blue:#bfe7fb;--blue2:#e5f5ff;--pink:#ffe2ef;--lav:#eee8ff;--line:#dcecf5;--accent:#5ba9d4;--shadow:0 14px 36px #7baac21c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% 0,#e3f5ff 0,transparent 32%),radial-gradient(circle at 95% 12%,#ffeaf3 0,transparent 28%),var(--bg);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:11px 16px;background:var(--accent);color:white;font-weight:700;box-shadow:0 5px 14px #5ba9d433}button.secondary{background:#eaf6fd;color:#37627c;box-shadow:none;border:1px solid var(--line)}button.danger{background:#fff0f2;color:#bd526b;box-shadow:none}button:disabled{opacity:.5;cursor:not-allowed}
+.wrap{max-width:1120px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:52px;height:52px;border-radius:18px;background:linear-gradient(135deg,var(--blue),var(--pink));display:grid;place-items:center;font-size:29px;box-shadow:var(--shadow)}h1{font-size:clamp(22px,4vw,30px);margin:0}.sub{color:var(--muted);font-size:13px;margin-top:3px}.card{background:#ffffffdf;border:1px solid #fff;border-radius:22px;padding:20px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}.auth{max-width:470px;margin:7vh auto}.auth h2{margin:0 0 8px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;font-weight:700;color:#56758a}.field input,.field select,.field textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:#fbfeff;color:var(--ink);outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:#7cc4e8;box-shadow:0 0 0 3px #bfe7fb66}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab{background:#fff;color:#57778c;border:1px solid var(--line);box-shadow:none}.tab.active{background:#dff3ff;color:#28648a;border-color:#b6e1f6}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.hero{display:flex;align-items:center;gap:18px;background:linear-gradient(110deg,#e2f5ff,#fff0f6);overflow:hidden}.bear{font-size:76px;animation:bob 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 5px #719cb333)}@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(3deg)}}.hero h2{margin:0 0 6px}.muted{color:var(--muted)}.pill{display:inline-flex;background:#eff8fd;color:#47748e;border-radius:99px;padding:6px 10px;font-size:12px;font-weight:700}.meal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.meal:last-child{border:0}.meal strong{display:block}.emoji{font-size:28px}.moods{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.mood{background:#f4faff;border:1px solid var(--line);color:var(--ink);box-shadow:none;padding:12px 6px}.mood.selected{background:#dff3ff;border:2px solid #76bfe5}.mood span{display:block;font-size:25px;margin-bottom:4px}.list{display:grid;gap:10px}.item{padding:12px;border-radius:15px;background:#f7fbfe;border:1px solid var(--line)}.item small{color:var(--muted)}.item p{margin:6px 0}.notice{padding:12px 14px;border-radius:14px;background:#fff8e9;color:#806a38;font-size:13px;line-height:1.5}.success{background:#eaf9f0;color:#397454}.error{background:#fff0f1;color:#a84258}.hide{display:none!important}.right{display:flex;gap:8px;align-items:center}.footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}.adminTag{background:#f0eaff;color:#7459a8}.tiny{font-size:12px}.divider{height:1px;background:var(--line);margin:14px 0}
+@media(max-width:720px){.wrap{padding:14px}.span-8,.span-6,.span-4{grid-column:span 12}.hero{align-items:flex-start}.bear{font-size:58px}.top{align-items:flex-start}.moods{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">🧸</div><div><h1>Teddy Care</h1><div class="sub">Junior's Little World • gentle daily care</div></div></div>
+    <div class="right"><span id="userBadge" class="pill hide"></span><button id="logoutBtn" class="secondary hide">Log out</button></div>
+  </header>
+
+  <section id="authView" class="card auth">
+    <div style="text-align:center;font-size:58px">🧸</div>
+    <h2 style="text-align:center">A little care, every day</h2>
+    <p class="muted" style="text-align:center">Sign in or create your own private care space.</p>
+    <div class="tabs"><button class="tab active" data-auth="login">Login</button><button class="tab" data-auth="signup">Create account</button><button class="tab" data-auth="reset">Forgot password</button></div>
+    <form id="authForm">
+      <div id="nameField" class="field hide"><label>Your name</label><input id="name" autocomplete="name" placeholder="Junior"></div>
+      <div class="field"><label>Email</label><input id="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+      <div id="passwordField" class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters"></div>
+      <button id="authSubmit" type="submit" style="width:100%">Login</button>
+    </form>
+    <p id="authMessage" class="tiny muted" aria-live="polite"></p>
+    <div class="notice">Your account is private. Only your own records and comments you are allowed to see will appear here.</div>
+  </section>
+
+  <main id="appView" class="hide">
+    <section class="card hero">
+      <div class="bear">🧸</div>
+      <div style="flex:1"><span class="pill">YOUR DAILY LITTLE REMINDER</span><h2 id="greeting">Good morning, Junior! ☀️</h2><p id="dateLine" class="muted">A fresh day, one gentle step at a time.</p><p id="dailyQuote">You deserve kindness, rest and a lovely day.</p></div>
+      <button id="notifyBtn" class="secondary">🔔 Enable notifications</button>
+    </section>
+
+    <nav class="tabs" id="mainTabs">
+      <button class="tab active" data-page="home">🏡 Home</button><button class="tab" data-page="mood">😊 Mood</button><button class="tab" data-page="history">📖 History</button><button class="tab" data-page="comments">💬 Comments</button><button id="adminTab" class="tab hide" data-page="admin">🔐 Admin</button>
+    </nav>
+
+    <section id="page-home" class="page">
+      <div class="grid">
+        <div class="card span-8"><h3>🍽️ Today's meal check-in</h3><p class="muted tiny">Add what you had or mark a meal as done.</p>
+          <div id="mealList"></div>
+          <div class="divider"></div>
+          <div class="field"><label>Meal details (optional)</label><input id="mealDetails" placeholder="e.g. eggs, toast and fruit"></div>
+          <button id="saveMeal">Save selected meal</button>
+          <span id="mealMessage" class="tiny muted"></span>
+        </div>
+        <div class="card span-4"><h3>🌤️ Quick mood</h3><p class="muted tiny">How are you feeling today?</p><div id="quickMoods" class="moods"></div><button id="saveQuickMood" style="width:100%;margin-top:12px">Save mood</button></div>
+        <div class="card span-6"><h3>⏰ Your reminders</h3><div class="field"><label>Breakfast</label><input type="time" id="breakfastTime" value="08:00"></div><div class="field"><label>Lunch</label><input type="time" id="lunchTime" value="13:00"></div><div class="field"><label>Dinner</label><input type="time" id="dinnerTime" value="19:00"></div><div class="field"><label>Good night</label><input type="time" id="nightTime" value="21:30"></div><button id="saveReminders">Save reminder times</button><p class="tiny muted">While this page is open, Teddy can show browser notifications at these times.</p></div>
+        <div class="card span-6"><h3>💙 A note from Teddy</h3><div style="font-size:44px;text-align:center">🧸💌</div><p id="teddyNote">Little steps count. Have some water, take a breath and be kind to yourself.</p><button class="secondary" id="newNote">Another kind note</button></div>
+      </div>
+    </section>
+
+    <section id="page-mood" class="page hide">
+      <div class="card"><h3>😊 Mood journal</h3><p class="muted">Choose the mood that best describes today.</p><div id="moodChoices" class="moods"></div><div class="field"><label>Anything you'd like to note?</label><textarea id="moodNote" rows="3" placeholder="A few words about your day..."></textarea></div><button id="saveMood">Save today's mood</button><span id="moodMessage" class="tiny muted"></span></div>
+    </section>
+
+    <section id="page-history" class="page hide">
+      <div class="card"><h3>📖 Your history</h3><p class="muted tiny">Your recent meal and mood entries.</p><div class="row"><div class="field"><label>Show records</label><select id="historyFilter"><option value="all">All records</option><option value="meal">Meals</option><option value="mood">Moods</option></select></div><div class="field"><label>Search date</label><input type="date" id="historyDate"></div></div><div id="historyList" class="list"></div></div>
+    </section>
+
+    <section id="page-comments" class="page hide">
+      <div class="card"><h3>💬 Shared comments</h3><p class="muted tiny">Post a friendly note for the members in this shared space. Avoid private or sensitive information.</p><div class="field"><label>Your comment</label><textarea id="commentText" rows="3" maxlength="500" placeholder="Write a kind, respectful comment..."></textarea></div><button id="postComment">Post comment</button><div class="divider"></div><div id="commentsList" class="list"></div></div>
+    </section>
+
+    <section id="page-admin" class="page hide">
+      <div class="card"><span class="pill adminTag">ADMIN ONLY</span><h3>🔐 Admin dashboard</h3><p class="muted tiny">Review shared activity and manage comments. Access is restricted to the configured admin email.</p><div id="adminSummary" class="grid"></div><h3>Recent shared activity</h3><div id="adminHistory" class="list"></div><h3>Comment moderation</h3><div id="adminComments" class="list"></div></div>
+    </section>
+  </main>
+  <div class="footer">Made with care 🩵 • Teddy Care • Take care of yourself, one day at a time.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* SETUP: paste your Supabase Project URL and anon key below. */
+const SUPABASE_URL = "https://gcinhmbheilqurdrhqng.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "sb_publishable_EbLVpLeFT_d7ruecq2l3bA_pdgz_wv9";
+/* Admin email requested for this project. Admin access is also enforced by database RLS policies. */
+const ADMIN_EMAIL = "jawadatta739@gmail.com";
+
+const $ = (id)=>document.getElementById(id);
+const hasConfig = SUPABASE_URL.startsWith("https://") && SUPABASE_ANON_KEY.length > 20;
+let db = null, currentUser = null, authMode = "login", selectedMood = "Happy", selectedQuickMood = "Happy", selectedMeal = "Breakfast", reminderTimer = null;
+const moods=[["Happy","😊"],["Lovely","🥰"],["Sad","😔"],["Tired","😴"],["Peaceful","😇"],["Excited","🤗"]];
+const meals=[["Breakfast","🥞"],["Lunch","🍱"],["Dinner","🍲"]];
+const notes=["You deserve kindness, rest and a lovely day. 💙","One small step is still progress. Teddy believes in your effort! 🧸","Remember to take a little break and drink some water. 💧","Your feelings matter. Be gentle with yourself today. 🌷","A calm moment can make a big difference. ✨"];
+function message(id,text,cls=""){const el=$(id);el.textContent=text;el.className="tiny "+(cls||"muted")}
+function showAuth(){ $("authView").classList.remove("hide");$("appView").classList.add("hide");$("logoutBtn").classList.add("hide");$("userBadge").classList.add("hide");}
+function showApp(user){currentUser=user;$("authView").classList.add("hide");$("appView").classList.remove("hide");$("logoutBtn").classList.remove("hide");$("userBadge").classList.remove("hide");$("userBadge").textContent=user.email+(user.email.toLowerCase()===ADMIN_EMAIL?" • Admin":"");$("adminTab").classList.toggle("hide",user.email.toLowerCase()!==ADMIN_EMAIL);setGreeting();loadAll();}
+function setGreeting(){const h=new Date().getHours();$("greeting").textContent=(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+", "+(currentUser.user_metadata?.name||"Junior")+"! "+(h<12?"☀️":h<17?"🌤️":"🌙");$("dateLine").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",year:"numeric",month:"long",day:"numeric"});}
+function authTab(mode){authMode=mode;document.querySelectorAll("[data-auth]").forEach(b=>b.classList.toggle("active",b.dataset.auth===mode));$("nameField").classList.toggle("hide",mode!=="signup");$("passwordField").classList.toggle("hide",mode==="reset");$("authSubmit").textContent=mode==="signup"?"Create account":mode==="reset"?"Send reset link":"Login";$("authMessage").textContent="";}
+document.querySelectorAll("[data-auth]").forEach(b=>b.addEventListener("click",()=>authTab(b.dataset.auth)));
+$("authForm").addEventListener("submit",async e=>{e.preventDefault();if(!db){message("authMessage","Setup required: add your Supabase URL and anon key in index.html.","error");return;}const email=$("email").value.trim(),password=$("password").value,name=$("name").value.trim();$("authSubmit").disabled=true;try{let result;if(authMode==="signup")result=await db.auth.signUp({email,password,options:{data:{name}}});else if(authMode==="reset")result=await db.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});else result=await db.auth.signInWithPassword({email,password});if(result.error)throw result.error;message("authMessage",authMode==="signup"?"Account created. Check your email if confirmation is enabled.":"Request completed. Check your email if needed.","success");}catch(err){message("authMessage",err.message,"error");}finally{$("authSubmit").disabled=false;}});
+$("logoutBtn").onclick=async()=>{if(db)await db.auth.signOut();currentUser=null;showAuth();};
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(p=>p.classList.add("hide"));$("page-"+b.dataset.page).classList.remove("hide");if(b.dataset.page==="history")loadHistory();if(b.dataset.page==="comments")loadComments();if(b.dataset.page==="admin")loadAdmin();}));
+function renderMoods(target,quick=false){$(target).innerHTML=moods.map(([n,e])=>`<button class="mood ${n===(quick?selectedQuickMood:selectedMood)?"selected":""}" data-mood="${n}"><span>${e}</span>${n}</button>`).join("");$(target).querySelectorAll("[data-mood]").forEach(b=>b.onclick=()=>{if(quick)selectedQuickMood=b.dataset.mood;else selectedMood=b.dataset.mood;renderMoods(target,quick);});}
+function renderMeals(){ $("mealList").innerHTML=meals.map(([n,e])=>`<div class="meal"><div><span class="emoji">${e}</span> <strong style="display:inline">${n}</strong></div><button class="secondary ${selectedMeal===n?"":" "}" data-meal="${n}">${selectedMeal===n?"Selected":"Select"}</button></div>`).join("");$("mealList").querySelectorAll("[data-meal]").forEach(b=>b.onclick=()=>{selectedMeal=b.dataset.meal;renderMeals();});}
+async function saveMeal(){if(!db)return;const {error}=await db.from("meals").insert({user_id:currentUser.id,user_email:currentUser.email,meal_type:selectedMeal,details:$("mealDetails").value.trim(),eaten:true});if(error){message("mealMessage",error.message,"error");return;}message("mealMessage",selectedMeal+" saved! 🩵","success");$("mealDetails").value="";}
+async function saveMood(target){if(!db)return;const mood=target==="quick"?selectedQuickMood:selectedMood;const note=target==="quick"?"":$("moodNote").value.trim();const {error}=await db.from("mood_entries").insert({user_id:currentUser.id,user_email:currentUser.email,mood,note});if(error){message(target==="quick"?"mealMessage":"moodMessage",error.message,"error");return;}if(target!=="quick")$("moodNote").value="";message(target==="quick"?"mealMessage":"moodMessage","Mood saved. Thank you for checking in! 💙","success");}
+$("saveMeal").onclick=saveMeal;$("saveMood").onclick=()=>saveMood("full");$("saveQuickMood").onclick=()=>saveMood("quick");
+async function loadAll(){renderMoods("quickMoods",true);renderMoods("moodChoices");renderMeals();await loadHistory();loadComments();loadReminders();}
+async function loadHistory(){if(!db||!currentUser)return;const filter=$("historyFilter").value,date=$("historyDate").value;let out=[];if(filter!=="mood"){let q=db.from("meals").select("*").order("created_at",{ascending:false}).limit(100);if(date)q=q.gte("created_at",date+"T00:00:00").lt("created_at",date+"T23:59:59");let r=await q;if(!r.error)out.push(...r.data.map(x=>({...x,kind:"meal",stamp:x.created_at})));}if(filter!=="meal"){let q=db.from("mood_entries").select("*").order("created_at",{ascending:false}).limit(100);if(date)q=q.gte("created_at",date+"T00:00:00").lt("created_at",date+"T23:59:59");let r=await q;if(!r.error)out.push(...r.data.map(x=>({...x,kind:"mood",stamp:x.created_at})));}out.sort((a,b)=>new Date(b.stamp)-new Date(a.stamp));$("historyList").innerHTML=out.length?out.map(x=>`<div class="item"><b>${x.kind==="meal"?"🍽️ "+esc(x.meal_type):"😊 "+esc(x.mood)}</b><p>${esc(x.details||x.note||"No extra note")}</p><small>${new Date(x.stamp).toLocaleString()}</small></div>`).join(""):'<p class="muted">No records found yet.</p>';}
+$("historyFilter").onchange=loadHistory;$("historyDate").onchange=loadHistory;
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function loadComments(){if(!db)return;const {data,error}=await db.from("comments").select("*").order("created_at",{ascending:false}).limit(80);if(error){$("commentsList").innerHTML='<p class="muted">Comments are not available yet. Check database setup.</p>';return;}renderComments("commentsList",data,false);}
+function renderComments(id,data,admin){$(id).innerHTML=data.length?data.map(c=>`<div class="item"><b>${esc(c.display_name||"Member")}</b><p>${esc(c.body)}</p><small>${new Date(c.created_at).toLocaleString()}</small>${admin?` <button class="danger tiny" data-delete-comment="${c.id}">Delete</button>`:""}</div>`).join(""):'<p class="muted">No comments yet. You can start with a kind message.</p>';$(id).querySelectorAll("[data-delete-comment]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this comment?"))return;const {error}=await db.from("comments").delete().eq("id",b.dataset.deleteComment);if(error)alert(error.message);else loadAdmin();});}
+$("postComment").onclick=async()=>{const body=$("commentText").value.trim();if(!body)return;if(!db)return;const {error}=await db.from("comments").insert({user_id:currentUser.id,user_email:currentUser.email,display_name:currentUser.user_metadata?.name||currentUser.email.split("@")[0],body});if(error)alert(error.message);else{$("commentText").value="";loadComments();}};
+async function loadAdmin(){if(!db||currentUser.email.toLowerCase()!==ADMIN_EMAIL)return;const [m,mo,c]=await Promise.all([db.from("meals").select("*").order("created_at",{ascending:false}).limit(100),db.from("mood_entries").select("*").order("created_at",{ascending:false}).limit(100),db.from("comments").select("*").order("created_at",{ascending:false}).limit(100)]);$("adminSummary").innerHTML=[["Meals",m.data?.length||0],["Mood entries",mo.data?.length||0],["Comments",c.data?.length||0]].map(([k,v])=>`<div class="card span-4"><div class="muted tiny">${k}</div><div style="font-size:28px;font-weight:800">${v}</div></div>`).join("");let all=[...(m.data||[]).map(x=>({...x,kind:"Meal",desc:x.meal_type+" — "+(x.details||"")})),...(mo.data||[]).map(x=>({...x,kind:"Mood",desc:x.mood+" — "+(x.note||"")}))].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));$("adminHistory").innerHTML=all.length?all.map(x=>`<div class="item"><b>${x.kind}: ${esc(x.desc)}</b><p>${esc(x.user_email)}</p><small>${new Date(x.created_at).toLocaleString()}</small></div>`).join(""):'<p class="muted">No activity yet.</p>';renderComments("adminComments",c.data||[],true);}
+async function loadReminders(){if(!db)return;const {data}=await db.from("reminder_settings").select("*").eq("user_id",currentUser.id).maybeSingle();if(data){$("breakfastTime").value=data.breakfast_time||"08:00";$("lunchTime").value=data.lunch_time||"13:00";$("dinnerTime").value=data.dinner_time||"19:00";$("nightTime").value=data.night_time||"21:30";}startReminderChecks();}
+$("saveReminders").onclick=async()=>{const payload={user_id:currentUser.id,breakfast_time:$("breakfastTime").value,lunch_time:$("lunchTime").value,dinner_time:$("dinnerTime").value,night_time:$("nightTime").value};const {error}=await db.from("reminder_settings").upsert(payload);if(error)alert(error.message);else{alert("Reminder times saved! 🩵");startReminderChecks();}};
+const reminderLabels=[["breakfastTime","🥞 Breakfast time"],["lunchTime","🍱 Lunch time"],["dinnerTime","🍲 Dinner time"],["nightTime","🌙 Good night"]];
+function startReminderChecks(){if(reminderTimer)clearInterval(reminderTimer);let sent=new Set();reminderTimer=setInterval(()=>{const now=new Date(),hm=now.toTimeString().slice(0,5),key=now.toDateString()+hm;for(const [id,label] of reminderLabels)if($(id).value===hm&&!sent.has(key+id)){sent.add(key+id);notify(label,id==="nightTime"?"Teddy says: Good night! Sleep well and rest. 🧸":"Teddy reminder: It's time for "+label.replace(/^[^ ]+ /,"")+". Take a gentle care break! 💙");}},15000);}
+async function notify(title,body){if("Notification"in window&&Notification.permission==="granted"){new Notification(title,{body,icon:"teddy-icon.png"});}else if("Notification"in window&&Notification.permission!=="denied"){const p=await Notification.requestPermission();if(p==="granted")new Notification(title,{body});}}
+$("notifyBtn").onclick=async()=>{if(!("Notification"in window)){alert("This browser does not support notifications.");return;}const p=await Notification.requestPermission();$("notifyBtn").textContent=p==="granted"?"🔔 Notifications enabled":"🔕 Notifications not enabled";if(p==="granted")notify("Teddy Care 🧸","Notifications are ready while your page is open.");};
+$("newNote").onclick=()=>{$("teddyNote").textContent=notes[Math.floor(Math.random()*notes.length)];};
+if(hasConfig){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);db.auth.onAuthStateChange((_event,session)=>{if(session?.user)showApp(session.user);else showAuth();});db.auth.getSession().then(({data})=>data.session?showApp(data.session.user):showAuth());}else{showAuth();$("authMessage").textContent="Before using: connect a Supabase project using the included setup guide and SQL file.";}
+</script>
+<script>if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});</script>
+</body>
+</html>
